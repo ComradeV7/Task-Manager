@@ -36,7 +36,7 @@ Make sure you have [Node.js](https://nodejs.org/) (which includes npm) installed
 
 1.  **Clone the repository:**
     ```sh
-    git clone [https://github.com/ComradeV7/Task-Manager.git](https://github.com/ComradeV7/Task-Manager.git)
+    git clone https://github.com/ComradeV7/Task-Manager.git
     ```
 2.  **Navigate to the project directory:**
     ```sh
