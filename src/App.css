@@ -1,0 +1,131 @@
+.App {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: sans-serif;
+  text-align: center;
+}
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vh;
+}
+div#root {
+      background-color: rgba(0, 0, 0, 0.1); /* Slightly dark overlay */
+      width: 45%;
+      height: 50%;
+}
+h1{
+  font-size: 35px;
+}
+form {
+  margin-bottom: 20px;
+}
+
+input[type='text'] {
+  padding: 10px;
+  width: 70%;
+  margin: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 35px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  
+}
+
+.delete-btn{
+  padding: 5px 8px;
+  background-color: #dc3545;
+  font-size: small;
+  margin-left: 5px;
+}
+
+.delete-btn:hover {
+  background-color: #c82333; /* A darker red for the hover effect */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+li span {
+  cursor: pointer;
+}
+
+li.completed span {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #242323;
+  border-left: 5px solid #202020;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.task-item:hover {
+    background-color: #313030;
+}
+
+/* Color codes for priorities */
+.task-item.immediate {
+  border-left-color: #dc3545; /* Red */
+}
+.task-item.shortTerm {
+  border-left-color: #ffc107; /* Yellow */
+}
+.task-item.longTerm {
+  border-left-color: #353535; /* Blue */
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.note-btn {
+  background-color: #262627; /* Grey */
+  font-size: small;
+  padding: 6px 8px;
+  border-radius: 35px;
+  margin-right: 5px;
+  object-fit: contain;
+}
+.note-btn:hover {
+  background-color: #323435;
+}
+
+/* Add a style for the task text if needed */
+.task-item span {
+  flex-grow: 1;
+}
+
+select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
