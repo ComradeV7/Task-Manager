@@ -1,34 +1,48 @@
-.App {
-  max-width: 500px;
-  margin: 40px auto;
-  padding: 20px;
-  font-family: sans-serif;
-  text-align: center;
-}
-body{
+/* --- Base and Desktop Styles --- */
+
+body {
+  /* This centers your app vertically and horizontally on desktop */
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 100vh;
+  min-height: 100vh; /* Corrected from min-width */
+  background-color: #2e2e2e; /* A light background for contrast */
+  font-family: sans-serif;
 }
+
 div#root {
-      background-color: rgba(0, 0, 0, 0.1); /* Slightly dark overlay */
-      width: 45%;
-      height: 50%;
+  background-color: #242424; /* White background for the app container */
+  width: 95%; /* Start with a flexible width */
+  max-width: 500px; /* Set a max-width for desktop */
+  min-height: 50vh;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(36, 36, 36, 0.1);
+  box-sizing: border-box;
 }
-h1{
-  font-size: 35px;
+
+.App {
+  text-align: center;
 }
+
+h1 {
+  font-size: 2rem; /* Use rem for scalable font sizes */
+  color: #f8f8f8;
+}
+
 form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 20px;
 }
 
 input[type='text'] {
+  flex-grow: 1; /* Allows input to take up available space */
   padding: 10px;
-  width: 70%;
-  margin: 30px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 8px;
+  min-width: 200px; /* Prevents input from becoming too small */
 }
 
 button {
@@ -36,70 +50,46 @@ button {
   border: none;
   background-color: #007bff;
   color: white;
-  border-radius: 35px;
+  border-radius: 8px;
   cursor: pointer;
-  margin-bottom: 5px;
-  
+  transition: background-color 0.2s;
 }
 
-.delete-btn{
-  padding: 5px 8px;
-  background-color: #dc3545;
-  font-size: small;
-  margin-left: 5px;
-}
-
-.delete-btn:hover {
-  background-color: #c82333; /* A darker red for the hover effect */
+button:hover {
+  background-color: #0056b3;
 }
 
 ul {
   list-style: none;
   padding: 0;
-}
-
-li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-li span {
-  cursor: pointer;
-}
-
-li.completed span {
-  text-decoration: line-through;
-  color: #888;
+  text-align: left;
 }
 
 .task-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #242323;
-  border-left: 5px solid #202020;
+  gap: 10px;
+  padding: 12px 10px;
+  border-bottom: 1px solid #202020;
+  border-left: 5px solid #1d1d1d;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 }
 
 .task-item:hover {
-    background-color: #313030;
+  background-color: #1a1919;
 }
 
-/* Color codes for priorities */
-.task-item.immediate {
-  border-left-color: #dc3545; /* Red */
+.task-item span {
+  flex-grow: 1;
+  word-break: break-word;
 }
-.task-item.shortTerm {
-  border-left-color: #ffc107; /* Yellow */
-}
-.task-item.longTerm {
-  border-left-color: #353535; /* Blue */
-}
+
+/* Priority Color Codes */
+.task-item.immediate { border-left-color: #dc3545; } /* Red */
+.task-item.shortTerm { border-left-color: #ffc107; } /* Yellow */
+.task-item.longTerm { border-left-color: #6c757d; } /* Grey */
 
 .task-actions {
   display: flex;
@@ -108,24 +98,60 @@ li.completed span {
 }
 
 .note-btn {
-  background-color: #262627; /* Grey */
-  font-size: small;
-  padding: 6px 8px;
-  border-radius: 35px;
-  margin-right: 5px;
-  object-fit: contain;
+  background-color: #6c757d;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.note-btn:hover {
-  background-color: #323435;
+.note-btn:hover { background-color: #5a6268; }
+.note-btn img {
+  width: 16px;
+  height: 16px;
 }
 
-/* Add a style for the task text if needed */
-.task-item span {
-  flex-grow: 1;
+.delete-btn {
+  background-color: #dc3545;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 30px;
 }
+.delete-btn:hover { background-color: #c82333; }
 
-select {
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+
+/* --- Media Query for Mobile Devices --- */
+/* These styles will ONLY apply when the screen width is 500px or less */
+@media (max-width: 500px) {
+  body {
+    /* Remove centering for mobile to use full screen height */
+    display: block;
+    background-color: #949494; 
+  }
+
+  div#root {
+    width: 100%;
+    min-height: 100vh;
+    padding: 15px;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none; /* Remove shadow on mobile */
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Make the title smaller */
+  }
+
+  /* Make the form input and button take up the full width */
+  form input[type='text'],
+  form button {
+    width: 50%;
+    margin: auto; /* Remove extra margins */
+  }
 }

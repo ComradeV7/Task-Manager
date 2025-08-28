@@ -66,3 +66,10 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.text-actions {
+  display: flex; /* Make the container a flex container */
+  flex-direction: row; /* Explicitly set the direction to horizontal (this is the default) */
+  align-items: center; /* Vertically align the items in the center */
+  gap: 8px; /* Add 8 pixels of space between the buttons */
+}

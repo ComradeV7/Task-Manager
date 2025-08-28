@@ -23,7 +23,7 @@ export const TaskForm = ({ onAddTask }: TaskFormProps) => {
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
       />
-      <button type="submit">Add Task</button>
+      <button type="submit" id="add-task-btn">Add Task</button>
     </form>
   );
 };

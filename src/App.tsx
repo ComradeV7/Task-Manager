@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { DragDropContext, type DropResult } from 'react-beautiful-dnd';
 import { TaskForm } from './components/TaskForm';
 import { TaskList } from './components/TaskList';
 import type { Task, TaskPriority } from './types';
@@ -51,12 +52,41 @@ function App() {
     );
   };
 
+  const handleDragEnd = (result: DropResult) => {
+  const { source, destination } = result;
+
+    // 1. Do nothing if the item was dropped outside a valid area
+    if (!destination) {
+      return;
+    }
+
+    // 2. Do nothing if the item was dropped in the same place
+    if (destination.droppableId === source.droppableId && destination.index === source.index) {
+      return;
+    }
+
+    // 3. Reorder the list
+    const items = Array.from(tasks);
+    const [reorderedItem] = items.splice(source.index, 1);
+    items.splice(destination.index, 0, reorderedItem);
+
+    setTasks(items);
+  };
+
+
   return (
-    <div className="App">
-      <h1>TO-DO LIST</h1>
-      <TaskForm onAddTask={addTask} />
-      <TaskList tasks={tasks} onDeleteTask={deleteTask} onUpdatePriority={updateTaskPriority} onUpdateNote={updateTaskNote} />
-    </div>
+    <DragDropContext onDragEnd={handleDragEnd}>
+      <div className="App">
+        <h1>TO-DO LIST</h1>
+        <TaskForm onAddTask={addTask} />
+        <TaskList
+          tasks={tasks}
+          onDeleteTask={deleteTask}
+          onUpdatePriority={updateTaskPriority}
+          onUpdateNote={updateTaskNote}
+        />
+      </div>
+    </DragDropContext>
   );
 }
 

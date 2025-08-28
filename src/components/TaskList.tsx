@@ -1,5 +1,6 @@
 import { TaskItem } from './TaskItem';
 import type { Task } from '../types';
+import { Droppable } from 'react-beautiful-dnd';
 
 type TaskListProps = {
   tasks: Task[];
@@ -15,16 +16,22 @@ export const TaskList = ({
   onUpdateNote
 }: TaskListProps) => {
   return (
-    <ul>
-      {tasks.map((task) => (
-        <TaskItem
-          key={task.id}
-          task={task}
-          onDelete={onDeleteTask} 
-          onUpdatePriority={onUpdatePriority}
-          onUpdateNote={onUpdateNote}
-        />
-      ))}
-    </ul>
+    <Droppable droppableId="tasks">
+      {(provided) => (
+        <ul {...provided.droppableProps} ref={provided.innerRef}>
+          {tasks.map((task, index) => (
+            <TaskItem
+              key={task.id}
+              task={task}
+              index={index} // Pass the index for the Draggable component
+              onDelete={onDeleteTask}
+              onUpdatePriority={onUpdatePriority}
+              onUpdateNote={onUpdateNote}
+            />
+          ))}
+          {provided.placeholder}
+        </ul>
+      )}
+    </Droppable>
   );
 };
